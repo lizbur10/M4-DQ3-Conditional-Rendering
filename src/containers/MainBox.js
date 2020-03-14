@@ -1,12 +1,20 @@
-import React from 'react'
-import MenuBar from '../components/MenuBar.js'
-import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
+import React from "react";
+import MenuBar from "../components/MenuBar.js";
+import { Profile, Photos, Cocktails, Pokemon } from "../components/Pages.js";
 
 class MainBox extends React.Component {
+  state = {
+    selectedItem: 0,
+    
+  };
+  selectedItem = menuNumber => {
+    this.setState({
+      selectedItem: menuNumber
+    });
 
-
+    // console.log(this.state.selectedItem);
+  };
   render() {
-
     /*
 
     Replace the code below! Depending on what menu item is selected in the menu, 
@@ -17,16 +25,42 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    const detailsToDisplay = (state) => {
+      if (state === 0) {
+
+        return (
+
+            <Profile />
+          
+        );
+      } else if (state === 1) {
+
+        return (
+          <div>
+            <Photos />
+          </div>
+        );
+      } else if(state === 2){
+        return (
+          <div>
+            <Cocktails />
+          </div>
+        );
+      } else if(state ===3) {
+        return (
+          <Pokemon />
+        )
+      }
+    };
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
-      </div>
-    )
-  }
+        <MenuBar selectedItem={this.state.selectedItem} clickHandle={this.selectedItem} />
 
+        {detailsToDisplay(this.state.selectedItem)}
+      </div>
+    );
+  }
 }
 
-export default MainBox
+export default MainBox;
