@@ -4,7 +4,21 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       selectedPage:"profile"
+    }
+  }
+  
 
+  handleClick = (id) => {
+    console.log(id,"hello");
+    
+    this.setState({selectedPage:id})
+  }
+  
   render() {
 
     /*
@@ -16,13 +30,20 @@ class MainBox extends React.Component {
     these methods be called?
 
     */
-
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    if(this.state.selectedPage === "profile"){
+      this.detailsToDisplay = <div> <Profile/> </div>
+    }else if(this.state.selectedPage === "photo"){
+      this.detailsToDisplay = <div> <Photos/> </div>
+    }else if(this.state.selectedPage === "cocktail"){
+      this.detailsToDisplay = <div> <Cocktails/> </div>
+    }else{
+      this.detailsToDisplay = <div> <Pokemon/> </div>
+    }
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar handleClick={this.handleClick} selectedPage={this.state.selectedPage} />
+        {this.detailsToDisplay}
       </div>
     )
   }
