@@ -4,6 +4,21 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  constructor(){
+    super()
+    this.state=(
+      {
+        tab: "profile"
+      }
+    )
+  }
+
+  clickHandler = (event) => {
+    this.setState({
+      tab: event.target.id
+    })
+  }
+
 
   render() {
 
@@ -17,12 +32,14 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar clickHandler={this.clickHandler} tab={this.state.tab}/>
+        {this.state.tab === "profile" && <Profile/>}
+        {this.state.tab === "photo" && <Photos/>}
+        {this.state.tab === "cocktail" && <Cocktails/>}
+        {this.state.tab === "pokemon" && <Pokemon/>}
       </div>
     )
   }
