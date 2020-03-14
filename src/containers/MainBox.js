@@ -1,6 +1,11 @@
 import React from 'react'
 import MenuBar from '../components/MenuBar.js'
 import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
 
 class MainBox extends React.Component {
 
@@ -17,12 +22,19 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
-
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <Router>
+          <MenuBar />
+          <Switch>
+            <Route exact path="/" component={Profile}/>
+            <Route exact path="/photos" component={Photos}/>
+            <Route exact path="/cocktails" component={Cocktails}/>
+            <Route exact path="/pokemon" component={Pokemon}/>
+          </Switch>
+            
+        </Router>
+        
       </div>
     )
   }

@@ -1,4 +1,7 @@
 import React from 'react'
+import {
+  NavLink
+} from "react-router-dom";
 
 const MenuBar = (props) => {
 
@@ -15,21 +18,21 @@ const MenuBar = (props) => {
 
   return (
     <div className="ui four item menu">
-      <a className="item active" id="profile">
+      <NavLink exact className="item" activeClassName="active"  id="profile" to="/">
         <i className="user large icon" id="profile"/>
-      </a>
+      </NavLink>
 
-      <a className="item" id="photo">
+      <NavLink className="item"  activeClassName="active" id="photo" to="/photos">
         <i className="photo large icon" id="photo"/>
-      </a>
+      </NavLink>
 
-      <a className="item" id="cocktail">
+      <NavLink className="item"  activeClassName="active" id="cocktail" to="/cocktails">
         <i className="cocktail large icon" id="cocktail"/>
-      </a>
+      </NavLink>
 
-      <a className="item" id="pokemon"> 
+      <NavLink className="item"  activeClassName="active" id="pokemon" to="/pokemon"> 
         <i className=" themeisle large icon" id="pokemon"/>
-      </a>
+      </NavLink>
     </div>
   )
 
